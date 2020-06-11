@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Hi = ({ name }) => <div>Hello { name }!</div>;
+function Gate ({ isOpen }) {
+  return (
+    <>
+      {isOpen ? <p>Open</p> : <p>Close</p>}
+    </>
+  )
+}
 
 function MediaCard( props ) {
   return (
@@ -9,17 +15,17 @@ function MediaCard( props ) {
       <h2>{props.title}</h2>
       <p>{props.body}</p>
       <img src={props.imageUrl} />
+      <Gate isOpen={props.isOpen} />
     </>
   );
 }
 
 const card = {
-  title:  'Title',
-  body: 'I hope you enjoy learning React!',
-  imageUrl: 'https://placekitten.com/g/64/64'
+  title: 'Title',
+  body: ["I hope you enjoy learning ", <strong>React</strong>,  "!"],
+  imageUrl: 'https://placekitten.com/g/64/64',
+  isOpen: true
 };
-
-// ReactDOM.render(<Hi name= "Dave" />, document.querySelector('#root'));
 
 ReactDOM.render(
   <MediaCard {...card}/>,
